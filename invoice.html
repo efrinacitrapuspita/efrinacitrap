@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invoice - Oreel Bakery</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .invoice-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .invoice-container h2 {
+      color: #f4c2c2;
+      margin-bottom: 20px;
+    }
+    .invoice-item {
+      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+    }
+    .invoice-total {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="invoice-container">
+    <h2>Invoice Pembelian</h2>
+    <div id="invoice-items"></div>
+    <div class="invoice-total" id="invoice-total"></div>
+  </main>
+
+  <script>
+    const invoice = JSON.parse(localStorage.getItem("invoice"));
+
+    if (!invoice || invoice.items.length === 0) {
+      document.getElementById("invoice-items").innerHTML = "<p>Tidak ada invoice.</p>";
+    } else {
+      const container = document.getElementById("invoice-items");
+      let total = 0;
+
+      invoice.items.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        const div = document.createElement("div");
+        div.className = "invoice-item";
+        div.innerHTML = `
+          <strong>${item.name}</strong><br />
+          Jumlah: ${item.quantity} x ${formatCurrency(item.price)}<br />
+          Total: ${formatCurrency(itemTotal)}
+        `;
+        container.appendChild(div);
+      });
+
+      document.getElementById("invoice-total").innerText = "Total Belanja: " + formatCurrency(total);
+    }
+
+    function formatCurrency(number) {
+      return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0
+      }).format(number);
+    }
+  </script>
+
+</body>
+</html>

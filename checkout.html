@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout - Citra's Bakery</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="login.html">Login</a></li>
+      </ul>
+      </nav>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <h2>Checkout</h2>
+            <form id="checkout-form">
+                <label for="fullname">Nama Lengkap:</label>
+                <input type="text" id="fullname" required />
+
+                <label for="address">Alamat Pengiriman:</label>
+                <textarea id="address" required></textarea>
+
+                <label for="phone">No. Telepon:</label>
+                <input type="tel" id="phone" required />
+
+                <button type="submit">Bayar Sekarang</button>
+            </form>
+        </section>
+
+        <section id="receipt-section" style="display:none;">
+            <h2>Terima Kasih! Pesanan Anda:</h2>
+            <div id="receipt-details"></div>
+            <a href="index.html" class="btn">Kembali ke Beranda</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; "Manisnya Citra, Cita Rasanya Juara"</p>
+    </footer>
+
+    <script src="citra.js"></script>
+</body>
+</html>

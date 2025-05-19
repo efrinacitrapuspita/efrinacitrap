@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kontak - Citra's Bakery</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .contact-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff8f0;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(139,69,19,0.2);
+    }
+    .contact-container h2 {
+      text-align: center;
+      color: #5C4033;
+      margin-bottom: 1.5rem;
+    }
+    .contact-info {
+      margin-bottom: 2rem;
+      color: #4e3629;
+    }
+    form label {
+      display: block;
+      margin-top: 1rem;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+    .submit-btn {
+      margin-top: 1.5rem;
+      background-color: #D2691E;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background-color: #A0522D;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav-container">
+      <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contact-container">
+      <h2>Hubungi Kami</h2>
+      <div class="contact-info">
+        <p><strong>Alamat:</strong></p>
+        <p> Jl. Anyar No. 053, Ngajum</p>
+        <p><strong>Email:</strong> </p>
+        <p>@citrasbakery22.com</p>
+        <p><strong>Telepon:</strong></p>
+        <p>0851-8970-5547</p>
+      </div>
+
+      <form onsubmit="submitContact(event)">
+        <label for="name">Nama</label>
+        <input type="text" id="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required />
+
+        <label for="message">Pesan</label>
+        <textarea id="message" rows="4" required></textarea>
+
+        <button class="submit-btn" type="submit">Kirim Pesan</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Citra's Bakery — "Manisnya Citra, Cita Rasanya Juara."</p>
+  </footer>
+
+  <script>
+    function submitContact(e) {
+      e.preventDefault();
+      alert("Terima kasih! Pesan Anda telah dikirim.");
+      document.querySelector('form').reset();
+    }
+  </script>
+</body>
+</html>

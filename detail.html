@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detail Produk - Citra's Bakery</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .product-detail-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+      background-color: #fefefe;
+    }
+
+    .product-detail-image img {
+      max-width: 100%; /* Membuat gambar responsif */
+      width: 100%;
+      height: auto;
+      max-height: 400px; /* Menjaga gambar tidak terlalu besar */
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-detail-info {
+      max-width: 600px; /* Lebar konten detail lebih besar untuk tampilan lebih panjang */
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      min-height: 400px; /* Menjaga agar detailnya memiliki panjang tetap */
+      justify-content: space-between;
+    }
+
+    .product-detail-info h2 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .product-detail-info .price {
+      font-size: 1.5rem;
+      color: #c0392b;
+      font-weight: bold;
+    }
+
+    .product-detail-info p {
+      margin: 0;
+      line-height: 1.8;
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    #add-to-cart-btn {
+      background-color:#A0522D;
+      color: white;
+      border: none;
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    #add-to-cart-btn:hover {
+      background-color: #d35400;
+    }
+
+    footer {
+      background-color: #4e3629;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+    .back-button {
+      display: inline-block;
+      margin: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      color: #333;
+      border: 1px solid #333;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      background-color: #f4f4f4;
+      transition: background 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+    <a href="shop.html" class="back-button">← Kembali ke Shop</a>
+    <section class="product-detail-container">
+      <div class="product-detail-image">
+        <img id="detail-img" src="" alt="Detail Produk" />
+      </div>
+      <div class="product-detail-info">
+        <h2 id="detail-title"></h2>
+        <p class="price" id="detail-price"></p>
+        <p id="detail-desc"></p>
+        <button id="add-to-cart-btn">Masukkan Keranjang</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Citra's Bakery — "Manisnya Citra, Cita Rasanya Juara."</p>
+  </footer>
+
+  <script>
+    const productDetail = JSON.parse(localStorage.getItem('productDetail'));
+    if (productDetail) {
+      document.getElementById('detail-img').src = productDetail.imgSrc;
+      document.getElementById('detail-title').innerText = productDetail.name;
+      document.getElementById('detail-desc').innerText = productDetail.desc;
+      document.getElementById('detail-price').innerText = ` ${formatCurrency(productDetail.price)}`;
+      
+      document.getElementById('add-to-cart-btn').onclick = () => addToCart(productDetail);
+    } else {
+      window.location.href = 'shop.html';
+    }
+
+    function addToCart(product) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingProductIndex = cart.findIndex(item => item.id === product.id);
+    
+      if (existingProductIndex > -1) {
+        cart[existingProductIndex].quantity++;
+      } else {
+        cart.push({ ...product, quantity: 1 });
+      }
+    
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Produk berhasil ditambahkan ke keranjang!');
+      window.location.href = 'cart.html'; // langsung ke halaman checkout
+    }
+    
+    function formatCurrency(number) {
+      return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0
+      }).format(number);
+    }
+  </script>
+</body>
+</html>

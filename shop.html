@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop - Citra's Bakery</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background-color: #f9f5f2;
+      color: #4e3629;
+    }
+
+    header {
+      background-color: #8B4513;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: flex-start; /* Penting untuk rata kiri */
+    }
+    .logo a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .product-card {
+      width: 250px;
+      padding: 20px;
+      background-color: #fff8f0;
+      border: 1px solid #deb887;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(139, 69, 19, 0.2);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+    .product-card img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .product-card h3 {
+      margin: 0.75rem 0;
+      color: #5C4033;
+      font-size: 1.2em;
+    }
+    .product-card p {
+      margin: 0.5rem 0;
+      color: #7B3F00;
+      font-size: 1.1em;
+    }
+    .product-card .btn-detail,
+    .product-card .btn-cart {
+      display: block;
+      margin: 10px auto 0;
+      width: 80%;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .product-card .btn-detail {
+      background-color: #c6a47a;
+    }
+    .product-card .btn-detail:hover {
+      background-color: #9f7b5b;
+    }
+    .product-card .btn-cart {
+      background-color: #D2691E;
+    }
+    .product-card .btn-cart:hover {
+      background-color: #A0522D;
+    }
+
+    footer {
+      background-color: #4e3629;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .product-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="products-container" id="products">
+      <!-- Produk akan ditampilkan di sini -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Citra's Bakery — "Manisnya Citra, Cita Rasanya Juara."</p>
+  </footer>
+
+  <script>
+    const products = [
+      { id:1, name:"Oreo Chocolate Delight Cake", imgSrc:"kue1.jpg",   price:85000,   desc:"Kue cokelat lembut dengan krim Oreo yang lumer di mulut, dihiasi ganache cokelat dan renyahnya biskuit Oreo." },
+      { id:2, name:"Pink Cherry Jubilee Cake",  imgSrc:"kue2.jpeg",  price:95000,   desc:"Kue berwarna merah muda yang cantik dan lembut, dengan hiasan krim putih yang manis dan ceri merah segar yang menggoda." },
+      { id:3, name:"Matcha Oreo Bliss Cake",  imgSrc:"kue3.jpeg",  price:90000,   desc:"Kue lembut dengan sentuhan matcha yang khas, dilapisi krim matcha yang halus dan lezat. Dihiasi dengan lelehan matcha yang elegan dan renyahnya biskuit Oreo di setiap gigitan." },
+      { id:4, name:"Eaton Mocha Cashew Cake",   imgSrc:"kue4.jpg",   price:80000,   desc:"Kue mocha dengan krim cokelat yang kaya rasa. Dipercantik dengan hiasan cokelat roll elegan dan renyahnya kacang mete serta taburan kacang yang gurih." },
+      { id:5, name:"Eaton Peach Delight Cake",  imgSrc:"kue5.jpg",   price:100000,  desc:"Kue dengan cita rasa peach yang menyegarkan, berpadu sempurna dengan lapisan krim putih yang ringan. Dihiasi dengan irisan buah peach yang manis dan sentuhan elegan dari dekorasi cokelat." },
+      { id:6, name:"Enchanted Twilight Butterfly Cake",   imgSrc:"kue6.jpeg",  price:115000,   desc:"Kue gradasi warna hitam dan pink yang elegan menghiasi kue lembut ini, dihiasi dengan kupu-kupu berwarna rose gold yang anggun dan taburan mutiara putih yang berkilauan." },
+      { id:7, name:"Ocean Chocolate Cherry Cake",imgSrc:"kue7.jpg",  price:90000,   desc:"Kue cokelat lembut yang bergradasi warna biru laut yang menawan. Dihiasi dengan krim putih yang halus, lelehan cokelat yang menggoda, serpihan cokelat elegan, dan ceri merah segar yang memberikan sentuhan manis sempurna. " },
+      { id:8, name:"Stelette Chocolate Strawberry",imgSrc:"kue8.jpeg",price:150000, desc:"Kue cokelat dengan lapisan biru lembut yang unik ini dihiasi dengan ganache cokelat yang mewah, stroberi merah segar yang menggoda, donat mini berwarna cerah, dan sentuhan artistik dekorasi cokelat." },
+      { id:9, name:"Rosy Love Birthday Delight",   imgSrc:"kue9.jpeg",  price:100000,   desc:" Kue berwarna pink yang lembut dihiasi dengan krim berbentuk hati yang penuh kasih, ucapan HAPPY BIRTHDAY yang gembira, dan taburan sprinkle warna-warni yang cerah. " },
+      { id:10,name:"Butterfly Bliss Birthday Cake",imgSrc:"kue10.webp",price:200000,desc:"Kue ulang tahun ungu yang menawan dengan hiasan kupu-kupu emas yang elegan dan topper Happy Birthday berkilauan." }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = document.getElementById('cart-count');
+
+    function updateCartCount() {
+      if (cartCount) {
+        cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+      }
+    }
+
+    function showProductDetail(id) {
+      const prod = products.find(p => p.id === id);
+      if (prod) {
+        localStorage.setItem('productDetail', JSON.stringify(prod));
+        window.location.href = 'detail.html';
+      }
+    }
+
+    function addToCart(id) {
+      const prod = products.find(p => p.id === id);
+      const idx = cart.findIndex(i => i.id === id);
+      if (idx > -1) {
+        cart[idx].quantity++;
+      } else {
+        cart.push({ ...prod, quantity: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      alert(`${prod.name} ditambahkan ke keranjang!`);
+    }
+
+    // Render produk
+    const container = document.getElementById('products');
+    products.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <img src="${p.imgSrc}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>Rp ${new Intl.NumberFormat('id-ID').format(p.price)}</p>
+        <button class="btn-detail" onclick="showProductDetail(${p.id})">Lihat Detail</button>
+        <button class="btn-cart" onclick="addToCart(${p.id})">Tambah ke Keranjang</button>
+      `;
+      container.appendChild(card);
+    });
+
+    updateCartCount();
+  </script>
+</body>
+</html>
